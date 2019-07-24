@@ -1,6 +1,5 @@
 package zhaoTest;
 
-import java.util.Map;
 import java.util.Random;
 
 /**
@@ -21,7 +20,6 @@ public class LongestHuiWen {
 
     }
 
-
     private CentreAndlength fetchCentreAndLength(String string) {
         CentreAndlength centreAndlength = new CentreAndlength();
 
@@ -33,22 +31,15 @@ public class LongestHuiWen {
                     banjin++;
                     continue;
                 }
-
                 break;
             }
-
             if (centreAndlength.getLength() < banjin) {
                 centreAndlength.setCentre(i);
                 centreAndlength.setLength(banjin);
             }
-
-
         }
-
-
         return centreAndlength;
     }
-
 
     private String randomString(int length) {
         //  String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";   全量字符串,生成回文的概率较低
@@ -61,7 +52,6 @@ public class LongestHuiWen {
             sb.append(str.charAt(number));
         }
         return sb.toString();
-
 
     }
 
@@ -89,5 +79,4 @@ public class LongestHuiWen {
             this.length = length;
         }
     }
-
 }
