@@ -4,6 +4,8 @@ import java.util.Random;
 
 /**
  * Created by zhaochao on 2019/7/24.
+ *
+ *  输入一个整数对其进行翻转
  */
 
 public class IntReverse {
