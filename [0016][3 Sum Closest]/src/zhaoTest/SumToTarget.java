@@ -9,6 +9,8 @@ public class SumToTarget {
     public static void main(String[] args) {
         SumToTarget sumToTarget = new SumToTarget();
         int target = (int) (Math.random() * 50 + 50);
+//        int target = 200;
+
         int[] ints = sumToTarget.fetchStrings((int) (Math.random() * 10 + 10));
         System.out.println("目标数" + target);
         System.out.print("数组");
@@ -39,8 +41,8 @@ public class SumToTarget {
         for (int i = 0; ; i++) {
             for (int j = 0; j < numbers.length; j++) {
                 for (int k = j + 1; k < numbers.length; k++) {
-                    for (int m = j + 1; m < numbers.length; m++) {
-                        if ((numbers[j] + numbers[k] + numbers[m]) == target + 0 || (numbers[j] + numbers[k] + numbers[m]) == target - 0) {
+                    for (int m = k + 1; m < numbers.length; m++) {
+                        if ((numbers[j] + numbers[k] + numbers[m]) == target + i || (numbers[j] + numbers[k] + numbers[m]) == target - i) {
                             threeNumber[0] = numbers[j];
                             threeNumber[1] = numbers[k];
                             threeNumber[2] = numbers[m];
