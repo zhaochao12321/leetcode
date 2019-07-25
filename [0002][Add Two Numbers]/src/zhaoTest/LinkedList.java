@@ -16,8 +16,8 @@ public class LinkedList {
 
     public static void main(String[] args) {
         LinkedList linkedList = new LinkedList();
-        LinkedNode firstNodeList = linkedList.makeList(100);
-        LinkedNode secondNodeList = linkedList.makeList(100);
+        LinkedNode firstNodeList = linkedList.makeList(10);
+        LinkedNode secondNodeList = linkedList.makeList(10);
 
         LinkedNode endNodeList = add(firstNodeList, secondNodeList, 0);
 

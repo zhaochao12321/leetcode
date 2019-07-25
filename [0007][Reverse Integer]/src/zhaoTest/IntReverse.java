@@ -36,7 +36,6 @@ public class IntReverse {
         }
         return 10 * n + mm;
 
-
     }
 
 
