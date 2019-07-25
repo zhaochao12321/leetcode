@@ -42,6 +42,14 @@ public class LongestHuiWen {
         return centreAndlength;
     }
 
+
+    /**
+     * 生成随机字符串
+     *
+     * @param length 字符串长度
+     * @return
+     */
+
     private String randomString(int length) {
         //  String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";   全量字符串,生成回文的概率较低
         String str = "abcdefghijklmnopqrstuvwxyz"; // 全小写字符串,生成回文的概率较高
