@@ -10,8 +10,8 @@ package zhaoTest;
 
 public class MergeTwoSortedLink {
     public static void main(String[] args) throws Exception {
-        int node1Length = (int) (Math.random() * 10) + 5;
-        int node2Length = (int) (Math.random() * 10) + 5;
+        int node1Length = (int) (Math.random() * 5) + 5;
+        int node2Length = (int) (Math.random() * 5) + 5;
 
         ListNode node1 = ListNodeUtil.fetchNodeList(node1Length);
         ListNode node2 = ListNodeUtil.fetchNodeList(node2Length);
@@ -21,7 +21,7 @@ public class MergeTwoSortedLink {
         ListNode node1Sorted = ListNodeUtil.sortListNode(node1.deepClone(), node1Length); // µ¥Á´ÅÅÐò
         ListNode node2Sorted = ListNodeUtil.sortListNode(node2.deepClone(), node2Length); // µ¥Á´ÅÅÐò
 
-        ListNode merge2 = ListNodeUtil.mergesortedListNode(node1Sorted, node2Sorted);
+        ListNode merge2 = ListNodeUtil.mergesortedListNode(node1Sorted, node2Sorted, node1Length, node2Length);   //  ÓÐÐòÁ´ÅÅÐò
         System.out.println("ÂÒÐòµÚÒ»Á´£º  " + node1);
         System.out.println("ÅÅÐòµÚÒ»Á´£º  " + node1Sorted);
         System.out.println("ÂÒÐòµÚ¶þÁ´£º  " + node2);
