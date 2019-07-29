@@ -8,6 +8,13 @@ package zhaoTest;
 
 public class ListNodeUtil {
 
+
+    /**
+     * 生成一个定长的ListNode
+     *
+     * @param length
+     * @return
+     */
     public static ListNode fetchNodeList(int length) {
         ListNode listNodeReturn = null;
         ListNode middleNode = null;
@@ -76,16 +83,10 @@ public class ListNodeUtil {
         return sortListNode(surfaceClone, totalLength);
     }
 
-    /**
-     * 有序链排序
-     *
-     * @param list1 有序第一链
-     * @param list2 有序第二链
-     * @return 排序结果
-     */
 
     public static ListNode mergesortedListNode(ListNode list1, ListNode list2) throws Exception {
-
+        ListNode list1Next;
+        ListNode list2Next;
         if (list1 == null && list2 == null) {
             return null;
         }
@@ -96,18 +97,11 @@ public class ListNodeUtil {
 
         if (list2 == null) {
             return list1;
-        }                                                          // 合法性校验
-        ListNode surfaceClone = null;
+        }                                                          // 合法性校
 
 
-        if (list1.getValue() > list2.getValue()) {     //  不添加新的链,所以要选链头
-            surfaceClone = list1.clone();
-
-        } else {
-            surfaceClone = list2.clone();
-        }
+        // 思路：把短链插入长链中
         return null;
-        // return surfaceClone;
     }
 
 
