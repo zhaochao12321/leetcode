@@ -41,7 +41,14 @@ public class ListNodeUtil {
     }
 
 
-    public static ListNode sortListNode(ListNode listNode, int nodelength) {
+    /**
+     * 单链排序
+     *
+     * @param listNode
+     * @param nodelength
+     * @return
+     */
+    public static ListNode sortListNode(ListNode listNode, int nodelength) throws Exception {
         if (listNode == null || listNode.getNext() == null) {
             return listNode;
         }
@@ -60,15 +67,15 @@ public class ListNodeUtil {
 
             listNode = returnListNode;
         }
-        return returnListNode;
+        return returnListNode.deepClone();
     }
 
 
     /**
      * @param list1       第一乱序链
      * @param list2       第二乱序链
-     * @param totalLength 两链的元素总数,此处为了计算方便传入该值,应该封装一个方法计算元素数
-     * @return
+     * @param totalLength 两链的元素总数,此处为了计算方便传入该值,应该封装一个方法计算元素数.
+     * @return 思路：两链排序转化为单链排序
      * @throws Exception
      */
 
@@ -141,7 +148,7 @@ public class ListNodeUtil {
         }
 
 
-        return returnListNode;
+        return returnListNode.deepClone();
     }
 
 

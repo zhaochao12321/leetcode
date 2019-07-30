@@ -10,6 +10,16 @@ package zhaoTest;
 
 public class MergeTwoSortedLink {
     public static void main(String[] args) throws Exception {
+        MergeTwoSortedLink mergeTwoSortedLink = new MergeTwoSortedLink();
+
+        for (int i = 0; i < 10; i++) {
+            mergeTwoSortedLink.test();
+        }
+
+    }
+
+
+    public void test() throws Exception {
         int node1Length = (int) (Math.random() * 5) + 5;
         int node2Length = (int) (Math.random() * 5) + 5;
 
@@ -17,19 +27,62 @@ public class MergeTwoSortedLink {
         ListNode node2 = ListNodeUtil.fetchNodeList(node2Length);
 
         ListNode merge1 = ListNodeUtil.mergeUnsortedListNode(node1.deepClone(), node2.deepClone(), node1Length + node2Length); // ¶ÔÂÒÐòÁ´ºÏ²¢
-
+        System.out.println("ÂÒÐòÁ´ÅÅÐò£º  " + merge1);
         ListNode node1Sorted = ListNodeUtil.sortListNode(node1.deepClone(), node1Length); // µ¥Á´ÅÅÐò
         ListNode node2Sorted = ListNodeUtil.sortListNode(node2.deepClone(), node2Length); // µ¥Á´ÅÅÐò
 
         ListNode merge2 = ListNodeUtil.mergesortedListNode(node1Sorted, node2Sorted, node1Length, node2Length);   //  ÓÐÐòÁ´ÅÅÐò
-        System.out.println("ÂÒÐòµÚÒ»Á´£º  " + node1);
+
+
+//        System.out.println("ÂÒÐòµÚÒ»Á´£º  " + node1);
         System.out.println("ÅÅÐòµÚÒ»Á´£º  " + node1Sorted);
-        System.out.println("ÂÒÐòµÚ¶þÁ´£º  " + node2);
+//        System.out.println("ÂÒÐòµÚ¶þÁ´£º  " + node2);
         System.out.println("ÅÅÐòµÚ¶þÁ´£º  " + node2Sorted);
-        System.out.println("ÂÒÐòÁ´ÅÅÐò£º  " + merge1);
+//        System.out.println("ÂÒÐòÁ´ÅÅÐò£º  " + merge1);
         System.out.println("ÓÐÐòÁ´ÅÅÐò£º  " + merge2);
 
 
-//        System.out.println(node2);
+//        int flag = 0;
+//        ListNode merge1Clone = merge1.deepClone();
+//        ListNode merge2Clone = merge2.deepClone();
+//        while (merge1 != null) {
+//            if (merge1.getValue() != merge2.getValue()) {
+//                flag = 1;
+//                break;
+//
+//            }
+//            merge1 = merge1.getNext();
+//            merge2 = merge2.getNext();
+//        }
+//
+//
+//        while (merge2Clone != null) {
+//            if (merge2Clone.getValue() != merge1Clone.getValue()) {
+//                flag = 1;
+//                break;
+//            }
+//            merge2Clone = merge2Clone.getNext();
+//            merge1Clone = merge1Clone.getNext();
+//        }
+//
+//        if (flag == 0) {
+//            System.out.println("³É¹¦");
+//        } else {
+//            System.out.println("Ê§°Ü");
+//        }
+//
+//        System.out.println();
+//        System.out.println();
+//        System.out.println();
+//        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+
+
     }
+
+
+//        System.out.println(node2);
+
 }
