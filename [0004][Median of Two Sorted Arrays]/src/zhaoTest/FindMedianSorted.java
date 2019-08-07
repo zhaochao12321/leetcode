@@ -10,118 +10,54 @@ package zhaoTest;
  */
 
 public class FindMedianSorted {
-    public static void main(String[] args) throws Exception {
-        FindMedianSorted findMedianSorted = new FindMedianSorted();
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        double end = 0;
 
-        int arraysLength1 = (int) (Math.random() * 20) + 1;
-        int arraysLength2 = (int) (Math.random() * 20) + 1;
-        int[] shuzu1 = findMedianSorted.fetchSortedArrays(arraysLength1);
-        int[] shuzu2 = findMedianSorted.fetchSortedArrays(arraysLength2);
+        int[] sortNums = paixu(nums1, nums2);
+        if (sortNums.length % 2 == 0) {               // 总数为偶数
+            end = ((double) sortNums[sortNums.length / 2] + (double) sortNums[(sortNums.length / 2) - 1]) / 2;
+        } else {
 
-
-        int median = findMedianSorted.fetchMedian(shuzu1, shuzu2);
-        System.out.println("中位数是 ：" + median);
-    }
-
-
-    /**
-     * 获取随机数组
-     *
-     * @param arraysLength
-     * @return
-     */
-    private int[] fetchSortedArrays(int arraysLength) {
-
-        int[] shuzu = new int[arraysLength];
-
-        for (int i = 0; i < arraysLength; i++) {
-            shuzu[i] = (int) (Math.random() * 100);
+            end = sortNums[(int) Math.ceil(sortNums.length / 2)];
         }
-
-        return arraysSorted(shuzu);
-    }
-
-    /**
-     * 数组排序
-     *
-     * @param shuzu
-     * @return
-     */
-    private int[] arraysSorted(int[] shuzu) {
-        int median;
-        for (int i = shuzu.length; i > 0; i--) {
-            for (int j = 0; j < i - 1; j++) {
-                if (shuzu[j] < shuzu[j + 1]) {
-                    median = shuzu[j];
-                    shuzu[j] = shuzu[j + 1];
-                    shuzu[j + 1] = median;
-                }
-
-            }
-        }
-        System.out.println("数组长度    " + shuzu.length);
-        for (int i = 0; i < shuzu.length; i++) {
-            System.out.print(shuzu[i] + "  ");
-        }
-        System.out.println();
-        return shuzu;
-    }
-
-
-    private int fetchMedian(int[] a, int[] b) throws Exception {
-        verify(a);
-        verify(b);
-        int mdianLocation = (int) Math.ceil((a.length + b.length) / 2) + 1;
-        int pointer1 = 0;
-        int pointer2 = 0;
-        int end = 0;
-
-        //  比头节点谁的大,直接已坐标
-        for (int i = 0; i < mdianLocation; i++) {
-            if (pointer1 < a.length && pointer2 < b.length) {
-                if (i == mdianLocation - 1) {
-                    end = Math.max(a[pointer1], b[pointer2]);
-                }
-                if (a[pointer1] > b[pointer2]) {
-                    pointer1++;
-                    continue;
-                }
-                pointer2++;
-                continue;
-
-            }
-            // 某个数组移完了,另一个直接取值
-            if (pointer1 < a.length) {
-
-                end = a[pointer1 + mdianLocation - i - 1];
-                break;
-            }
-            if (pointer2 < b.length) {
-
-                end = b[pointer2 + mdianLocation - i - 1];
-                break;
-            }
-
-        }
-
         return end;
     }
 
-    /**
-     * 合法性校验
-     *
-     * @param verifyArray
-     * @throws Exception
-     */
+    private int[] paixu(int[] nums1, int[] nums2) {
+        int[] sortNums = new int[nums1.length + nums2.length];
+        int length1 = 0;
+        int length2 = 0;
+        int i = 0;
 
-    private void verify(int[] verifyArray) throws Exception {
-        if (verifyArray == null || verifyArray.length == 0) {
 
-            throw new Exception("抛出异常");
-
+        if (nums1.length == 0) {
+            return nums2;
+        } else if (nums2.length == 0) {
+            return nums1;
+        }
+        while (length1 < nums1.length && length2 < nums2.length) {
+            if (nums1[length1] < nums2[length2]) {              // 第一数组的元素小
+                sortNums[i] = nums1[length1];
+                length1++;
+            } else {
+                sortNums[i] = nums2[length2];
+                length2++;
+            }
+            i++;
         }
 
+        if (length1 == nums1.length) {                          //数组一已经加完
+            for (int j = length2; j < nums2.length; j++) {
+                sortNums[length1 + j] = nums2[j];
+            }
 
+
+        } else if (length2 == nums2.length) {
+            for (int j = length1; j < nums1.length; j++) {
+                sortNums[j + length2] = nums1[j];
+            }
+        }
+        return sortNums;
     }
 
 }

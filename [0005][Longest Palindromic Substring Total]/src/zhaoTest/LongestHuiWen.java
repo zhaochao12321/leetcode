@@ -14,21 +14,26 @@ import java.util.Random;
 public class LongestHuiWen {
     public static void main(String[] args) {
         LongestHuiWen longestHuiWen = new LongestHuiWen();
-        // String s = "12234565665341234qwertyuytrewq4321";  给定字符串
-        String s = longestHuiWen.randomString(100); // 随机生成100位字符串
-        CentreAndlength centreAndlength = longestHuiWen.fetchCentreAndLength(s);
-        System.out.println(s.substring(centreAndlength.getCentre() - centreAndlength.getLength(), 1 + centreAndlength.getCentre() + centreAndlength.getLength()));
+        String s = "ccc";
+        //   String s = longestHuiWen.randomString(100); // 随机生成100位字符串
+
+        String returns = longestHuiWen.fetchCentreAndLength(s);
 
     }
 
-    private CentreAndlength fetchCentreAndLength(String string) {
-        CentreAndlength centreAndlength = new CentreAndlength();
+    private String fetchCentreAndLength(String s) {
+        if ("".equals(s)) {
+            return "";
+        }
 
-        for (int i = 0; i < string.length(); i++) {
-            int banjinMax = i < (string.length() - i) ? i : string.length() - i; // 最大半径
+        CentreAndlength centreAndlength = new CentreAndlength();
+        centreAndlength.setFlag(3);
+
+        for (int i = 0; i < s.length(); i++) {                         // 以某字符对称
+            int banjinMax = i < (s.length() - i-1) ? i : s.length() - i-1; // 最大半径
             int banjin = 0;
-            for (int j = 1; j < banjinMax; j++) {
-                if (string.charAt(i - j) == string.charAt(i + j)) {
+            for (int j = 1; j < banjinMax+1; j++) {
+                if (s.charAt(i - j) == s.charAt(i + j)) {
                     banjin++;
                     continue;
                 }
@@ -37,9 +42,38 @@ public class LongestHuiWen {
             if (centreAndlength.getLength() < banjin) {
                 centreAndlength.setCentre(i);
                 centreAndlength.setLength(banjin);
+                centreAndlength.setFlag(1);       // 根据元素对称    flag 为1
             }
         }
-        return centreAndlength;
+
+
+        for (int j = 0; j < s.length(); j++) {                          // 以某个中缝对称
+            int banjinMax = j + 1 < (s.length() - j - 1) ? j + 1 : s.length() - j - 1; // 最大半径
+            int banjin = 0;
+            for (int k = 1; k < banjinMax + 1; k++) {                     // 移动半径
+                if (s.charAt(j - k + 1) == s.charAt(j + k)) {
+                    banjin++;
+                    continue;
+                }
+
+                break;
+            }
+            if (centreAndlength.getLength() < banjin) {
+                centreAndlength.setCentre(j);
+                centreAndlength.setLength(banjin);
+                centreAndlength.setFlag(0);            // 根据线对称为 0
+            }
+
+        }
+
+        if (centreAndlength.getFlag() == 1) {     // 由元素对称
+            return s.substring(centreAndlength.getCentre() - centreAndlength.getLength(), 1 + centreAndlength.getCentre() + centreAndlength.getLength());
+        } else if (centreAndlength.getFlag() == 0) {
+            return s.substring(centreAndlength.getCentre() - centreAndlength.getLength() + 1, 1 + centreAndlength.getCentre() + centreAndlength.getLength());
+
+        }
+        return s.substring(0, 1);
+
     }
 
 
@@ -70,6 +104,7 @@ public class LongestHuiWen {
     class CentreAndlength {
         private int centre;
         private int length;
+        private int flag;      // 区分根据某元素对称和根据缝对称
 
 
         public int getCentre() {
@@ -86,6 +121,14 @@ public class LongestHuiWen {
 
         public void setLength(int length) {
             this.length = length;
+        }
+
+        public int getFlag() {
+            return flag;
+        }
+
+        public void setFlag(int flag) {
+            this.flag = flag;
         }
     }
 }
